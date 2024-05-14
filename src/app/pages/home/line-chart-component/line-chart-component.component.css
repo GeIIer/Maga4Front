@@ -1,0 +1,28 @@
+.parameter {
+  display: flex;
+  flex-direction: row;
+}
+
+input,
+label {
+  margin: 0.4rem 0;
+}
+
+.parameters {
+
+}
+
+.mat-mdc-table {
+  width: 100%;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.mat-column-name {
+  height: 100px;
+}
+
+.mat-mdc-button-base {
+  display: flex;
+  flex-direction: row;
+}

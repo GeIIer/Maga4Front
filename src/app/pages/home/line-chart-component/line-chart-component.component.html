@@ -1,0 +1,69 @@
+<div class="chart-container" xmlns="http://www.w3.org/1999/html">
+  <h2>f(x) = ax^2 + bx + c</h2>
+  <div class="parameters">
+    <div class="parameter">
+      <h3>a = </h3><input type="number"
+                        name="a"
+                        [(ngModel)]="paramA"
+                        (ngModelChange)="refreshFunction()"
+    />
+    </div>
+    <div class="parameter">
+      <h3>b = </h3><input type="number"
+                        name="a"
+                        [(ngModel)]="paramB"
+                        (ngModelChange)="refreshFunction()"
+    />
+    </div>
+    <div class="parameter">
+      <h3>c = </h3><input type="number"
+                        name="a"
+                        [(ngModel)]="paramC"
+                        (ngModelChange)="refreshFunction()"
+    />
+    </div>
+  </div>
+  <div class="mat-mdc-button-base">
+    <div class="demo-button-container">
+      <button mat-raised-button (click)="addData()" class="demo-button">
+        Добавить
+      </button>
+    </div>
+    <div class="demo-button-container">
+      <button mat-raised-button (click)="change()" class="demo-button">
+        Обновить
+      </button>
+    </div>
+  </div>
+  <mat-table [dataSource]="function.dots" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="x">
+      <mat-header-cell *matHeaderCellDef> X</mat-header-cell>
+      <mat-cell *matCellDef="let element"><input
+        type="number"
+        matInput
+        autocomplete="off"
+        [(ngModel)]="element.x"
+      /></mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="y">
+      <mat-header-cell *matHeaderCellDef> Y</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.y }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="удалить">
+      <mat-header-cell *matHeaderCellDef>Удалить</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button class="btn-remove" (click)="removeData(element.x)">
+          Удалить
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <canvas id="myChart" width="400" height="400">{{ lineChart }}</canvas>
+</div>
